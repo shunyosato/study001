@@ -1,0 +1,26 @@
+1. com.example.study.models パッケージに `Product` (商品) クラスを定義する
+   - フィールドは `name: String` と `price: Int` を持つ
+2. com.example.study.models パッケージに `Cart` (商品カート) クラスを定義する
+   - フィールドは `products: scala.collection.mutable.ListBuffer[Product]` を持つ
+   - productsに商品を1つ追加する `add` メソッドを持つ
+   - productsに商品を複数追加する `add` メソッドを持つ
+   - productsのn番目の商品を削除する `remove` メソッドを持つ
+3. com.example.study.services パッケージに `Service` (サービス事業者) traitを定義する
+   - `name: String` の抽象フィールドを持つ
+   - `tax: Int` の抽象フィールドを持つ
+   - カートを引数に受け取り "カート内の合計金額" + "合計金額の `tax` %" を上乗せした金額を返す `accounting` メソッドを持つ
+4. com.example.study.services パッケージに `Service` traitをミックスインした `Amazon` objectを定義する
+   - nameは “amazon”
+   - taxは10
+5. com.example.study.services パッケージに `Service` traitをミックスインした `Rakuten` objectを定義する
+   - nameは “rakuten”
+   - taxは20
+6. `Application` objectのrunメソッド内で `Cart` インスタンスを1つを作成する
+7. `Application` objectのrunメソッド内で `Product` インスタンスを1つを作成する
+   - name, priceはなんでもよい
+8. 7で作成した `Product` インスタンスを6で作成したcartインスタンスに追加する
+9. `Application` objectのrunメソッド内で `Product` インスタンスを3つを作成する
+   - name, priceはなんでもよい
+10. 9で作成した `Product` インスタンスを6で作成したcartインスタンスにまとめて追加する
+11. `Application` objectのrunメソッド内でAmazonでaccountingした結果をprintlnする
+12. `Application` objectのrunメソッド内でRakutenでaccountingした結果をprintlnする
