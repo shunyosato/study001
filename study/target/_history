@@ -1,0 +1,24 @@
+projects
+run
+Product(a, 3)
+run
+Product(a, 3)
+projects
+run
+Product(a, 3)
+add(ui)
+import com.example.study.models.Cart
+import com.example.study.models
+run
+Cart(a, b, c)
+run
+new Cart(ListBuffer())
+run
+compile
+run
+main
+Cart(a, b, c)]
+Cart(a, b, c)
+run
+:q
+exit
