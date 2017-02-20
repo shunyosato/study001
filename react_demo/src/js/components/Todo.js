@@ -9,7 +9,6 @@ export default class Todo extends React.Component {
   super();
   this.state = {
     updateValue: '',
-    index: 0,
   };
 }
 
@@ -17,14 +16,15 @@ export default class Todo extends React.Component {
     TodoAction.deleteTodo(this.props.id);
   }
 
-
-  updateTodo =(event) => {
-    this.setState({ index: event.target.value });
-    this.setState({ updateValue: event.target.value });
+  updateTodo = (event) => {
+    this.setState({ updateValue: event.target.value});
   }
 
   updateAction = (event) => {
     TodoAction.updateTodo(this.props.id, this.state.updateValue);
+    this.setState({
+      updateValue: ''
+    })
   }
 
   render() {
@@ -37,7 +37,6 @@ export default class Todo extends React.Component {
         <button onClick={this.updateAction}>Update</button>
         <button onClick={this.deleteAction}>Delete</button>
         <span>=>{text}</span>
-
       </li>
     );
   }

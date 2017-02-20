@@ -36,6 +36,9 @@ export default class Page1 extends React.Component {
 
   addAction = (event) => {
     TodoAction.addTodo(this.state.addValue);
+    this.setState({
+      addValue: ''
+    })
   }
   render() {
     const {todos} = this.state;
