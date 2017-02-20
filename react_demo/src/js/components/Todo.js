@@ -13,16 +13,18 @@ export default class Todo extends React.Component {
   };
 }
 
-  deleteTodo = (event) => {
-    let id = this.props.id;
-    TodoAction.deleteTodo(id);
+  deleteAction = (event) => {
+    TodoAction.deleteTodo(this.props.id);
   }
 
+
   updateTodo =(event) => {
-    let id = this.setState({ index: event.target.value });
-    let text = this.setState({ updateValue: event.target.value });
-    console.log("¥ " + event);
-    TodoAction.updateTodo(id, text);
+    this.setState({ index: event.target.value });
+    this.setState({ updateValue: event.target.value });
+  }
+
+  updateAction = (event) => {
+    TodoAction.updateTodo(this.props.id, this.state.updateValue);
   }
 
   render() {
@@ -31,9 +33,9 @@ export default class Todo extends React.Component {
     return (
       <li>
         <span>{complete}</span>
-        <input type="text" placeholder={text} value={this.state.updateValue} onChange={this.updateTodo} />
-        <button onClick={this.updateTodo}>Update</button>
-        <button onClick={this.deleteTodo}>Delete</button>
+        <input type="text" placeholder={text} value={this.state.updateValue}  onChange={this.updateTodo} />
+        <button onClick={this.updateAction}>Update</button>
+        <button onClick={this.deleteAction}>Delete</button>
         <span>=>{text}</span>
 
       </li>

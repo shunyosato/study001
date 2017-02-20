@@ -9,7 +9,7 @@ export default class Page1 extends React.Component {
   constructor(){
     super();
     this.state = {
-      addValue: 'hoge',
+      addValue: '',
       todos: TodoStore.getAll(),
     };
   }
@@ -34,14 +34,17 @@ export default class Page1 extends React.Component {
     this.setState({ addValue: event.target.value });
   }
 
+  addAction = (event) => {
+    TodoAction.addTodo(this.state.addValue);
+  }
   render() {
     const {todos} = this.state;
-    console.log('*******' + this.addTodo);
     console.log('+++++++++'+ todos);
 
     return (
       <div>
         <input type="text"  value={this.state.addValue} onChange={this.addTodo} />
+        <button onClick={this.addAction}>Add</button>
         <h3>My Todo List</h3>
         <ul>
           {todos.map((todo) =>
