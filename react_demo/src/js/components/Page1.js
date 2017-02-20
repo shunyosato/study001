@@ -9,6 +9,7 @@ export default class Page1 extends React.Component {
   constructor(){
     super();
     this.state = {
+      addValue: 'hoge',
       todos: TodoStore.getAll(),
     };
   }
@@ -29,20 +30,18 @@ export default class Page1 extends React.Component {
     });
   }
 
-  addTodo(){
-    let text = ReactDOM.findDOMNode(this.refs.inputValue).value;
-    TodoAction.addTodo(text);
-    ReactDOM.findDOMNode(this.refs.inputValue).value = "";
+  addTodo = (event) => {
+    this.setState({ addValue: event.target.value });
   }
 
   render() {
     const {todos} = this.state;
+    console.log('*******' + this.addTodo);
     console.log('+++++++++'+ todos);
 
     return (
       <div>
-        <input type="text" ref="inputValue" />
-        <button onClick={this.addTodo.bind(this)}>Add</button>
+        <input type="text"  value={this.state.addValue} onChange={this.addTodo} />
         <h3>My Todo List</h3>
         <ul>
           {todos.map((todo) =>

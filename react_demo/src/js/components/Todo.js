@@ -5,16 +5,24 @@ import TodoStore from "./TodoStore";
 
 export default class Todo extends React.Component {
 
-  deleteTodo(event) {
-    let id = this.props.id
+  constructor() {
+  super();
+  this.state = {
+    updateValue: '',
+    index: 0,
+  };
+}
+
+  deleteTodo = (event) => {
+    let id = this.props.id;
     TodoAction.deleteTodo(id);
   }
 
-  updateTodo(event){
-    let id = this.props.id
-    let text = ReactDOM.findDOMNode(this.refs.updateValue).value.trim();
+  updateTodo =(event) => {
+    let id = this.setState({ index: event.target.value });
+    let text = this.setState({ updateValue: event.target.value });
+    console.log("¥ " + event);
     TodoAction.updateTodo(id, text);
-    ReactDOM.findDOMNode(this.refs.updateValue).value = "";
   }
 
   render() {
@@ -23,9 +31,9 @@ export default class Todo extends React.Component {
     return (
       <li>
         <span>{complete}</span>
-        <input type="text" placeholder={text} ref="updateValue" />
-        <button onClick={this.updateTodo.bind(this)}>Update</button>
-        <button onClick={this.deleteTodo.bind(this)}>Delete</button>
+        <input type="text" placeholder={text} value={this.state.updateValue} onChange={this.updateTodo} />
+        <button onClick={this.updateTodo}>Update</button>
+        <button onClick={this.deleteTodo}>Delete</button>
         <span>=>{text}</span>
 
       </li>
